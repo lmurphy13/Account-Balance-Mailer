@@ -61,14 +61,23 @@ public class Account {
 
     }
 
+    public String toString() {
+        return String.format("%s\n\nNo transactions available yet. \nBalance: $%.2f\n\n",this.name, this.balance);
+    }
+
     public void printAccount() {
         System.out.printf("%s\n", this.name);
+        System.out.printf("%s\n", this.email);
         System.out.println();
         for (Transaction t : this.transactions) {
             System.out.println(t.toString());
         }
         System.out.println();
-        System.out.printf("Balance: $%.2f\n", this.balance);
+        System.out.printf("Balance: $%.2f\n\n", this.balance);
+    }
+
+    public static void main(String[] args) {
+
 
     }
 }
