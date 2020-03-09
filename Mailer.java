@@ -37,9 +37,13 @@ public class Mailer {
 
 
         for (Account recipient : accounts) {
+
+            if (recipient.getBalance() == 0.0)
+                continue;
+
             Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("email", "password");
+                    return new PasswordAuthentication("", "");
                 }
             });
     
