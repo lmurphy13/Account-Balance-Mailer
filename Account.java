@@ -15,10 +15,11 @@ public class Account {
     private double balance;
     private ArrayList<Transaction> transactions = new ArrayList<Transaction>();
 
-    public Account(String e, String n, double b) {
+    public Account(String e, String n, double b, ArrayList<Transaction> t) {
         this.email = e;
         this.name = n;
         this.balance = b;
+        this.transactions = t;
     }
 
     public String getEmail() {
@@ -53,16 +54,25 @@ public class Account {
         this.transactions = t;   
     }
 
-    public void addTransaction(double amount, String desc) {
-        Transaction temp = new Transaction(amount, desc);
+    public void addTransaction(String date, String name, String type, double amount, String desc) {
+        Transaction temp = new Transaction(date, name, type, amount, desc);
 
         this.transactions.add(temp);
-        this.balance -= amount;
-
     }
 
     public String toString() {
-        return String.format("%s\n\nNo transactions available yet. \nBalance: $%.2f\n\n",this.name, this.balance);
+        String acct = "";
+        
+        acct += String.format("%s\n\n",this.name);
+        acct += String.format("Date:\t\tType:\t\tAmount:\t\tDescription:\n\n");
+
+        for (Transaction t : this.transactions) {
+            acct += t.toString();
+        }
+
+        acct += String.format("\nBalance: $%.2f\n\n", this.balance);
+
+        return acct;
     }
 
     public void printAccount() {
